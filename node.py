@@ -18,7 +18,7 @@ def padded_bin(num, width):
     return s[2:].zfill(width)
 
 def goal2(node_id):
-	time.sleep(1)
+	time.sleep(10)
 	key_text = id_generator(n)
 	key_id = ''
 	key_id_sum = 0

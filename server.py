@@ -2,6 +2,8 @@ import sqlite3, shlex
 import subprocess, requests, threading, string, random, os, signal
 from threading import Thread
 
+cwd = os.getcwd()
+
 # Database connection
 conn = sqlite3.connect('p2p_db.db')
 cur = conn.cursor()
@@ -12,7 +14,7 @@ p = 0
 
 def running(binary_id, goal, n, m, key_id):
 	command_line = "python3 node.py '" + binary_id + "' " + str(goal) + " " + str(n) + " " + str(m) + " " + str(key_id)
-	ls_output=subprocess.Popen(shlex.split(command_line), shell=False)
+	ls_output=subprocess.Popen(shlex.split(command_line), cwd=cwd, shell=False)
 	pid = ls_output.pid
 
 	sql = "UPDATE `nodes` SET `process_id`=" + str(pid) + " WHERE `binary_id`='" + binary_id + "'"
